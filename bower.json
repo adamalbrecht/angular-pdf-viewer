@@ -1,0 +1,12 @@
+{
+  "name": "angular-lib-template",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "~1.2.16"
+  },
+  "devDependencies": {
+    "jquery": "~1.9.0",
+    "jasmine": "~2.0.0",
+    "angular-mocks": "~1.2.16"
+  }
+}
