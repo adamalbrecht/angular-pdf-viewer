@@ -10,9 +10,6 @@ minifyCSS = require("gulp-minify-css")
 ngmin = require("gulp-ngmin")
 less = require('gulp-less')
 
-# PATH VARIABLES
-# =================================================
-
 gulp.task "scripts", ->
   compiled = gulp.src("src/**/*.{coffee,js}")
     .pipe(gulpif(/[.]coffee$/,

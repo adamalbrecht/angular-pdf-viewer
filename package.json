@@ -24,6 +24,8 @@
     "coffee-script": "~1.7.1",
     "gulp-less": "~1.2.3"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "karma start"
+  },
   "dependencies": {}
 }
