@@ -2,14 +2,14 @@
 <html data-ng-app='DemoApp'>
   <head>
     <title>Demo</title>
-    <link rel="stylesheet" type="text/css" href="dist/style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="dist/my-package.css" media="all" />
   </head>
   <body>
     <div id='container' data-ng-controller='DemoCtrl'>
       <h1 data-ng-bind='myLabel'></h1>
     </div>
     <script type="text/javascript" src="vendor/bower/angular/angular.js"></script>
-    <script type="text/javascript" src="dist/src.js"></script>
+    <script type="text/javascript" src="dist/my-package.js"></script>
     <script type='text/javascript'>
       var app = angular.module("DemoApp", []);
       app.controller("DemoCtrl", function($scope) {

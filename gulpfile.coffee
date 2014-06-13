@@ -8,36 +8,44 @@ coffee = require("gulp-coffee")
 uglify = require("gulp-uglify")
 minifyCSS = require("gulp-minify-css")
 ngmin = require("gulp-ngmin")
-less = require('gulp-less')
+sass = require("gulp-ruby-sass")
+notify = require("gulp-notify")
+rename = require("gulp-rename")
+
+packageFileName = 'my-package'
 
 gulp.task "scripts", ->
-  compiled = gulp.src("src/**/*.{coffee,js}")
+  gulp.src("src/**/*.{coffee,js}")
     .pipe(gulpif(/[.]coffee$/,
       coffee({bare:true})
       .on('error', gutil.log)
     ))
     .pipe(ngmin())
-  compiled
-    .pipe(concat("src.js"))
+    .pipe(concat("#{packageFileName}.js"))
     .pipe(gulp.dest("dist"))
-  compiled
     .pipe(uglify())
-    .pipe(concat("src.min.js"))
+    .pipe(rename({extname: ".min.js"}))
     .pipe(gulp.dest("dist"))
 
 gulp.task "styles", ->
-  compiled = gulp.src("src/**/*.{less,css}")
-    .pipe(gulpif(/[.]less$/,
-      less()
-      .on('error', gutil.log)
-    ))
-  compiled
-    .pipe(concat("style.css"))
+  gulp.src("src/**/*.{scss,sass}")
+    .pipe(sass({
+        sourcemap: false,
+        unixNewlines: true,
+        style: 'nested',
+        debugInfo: false,
+        quiet: false,
+        lineNumbers: true,
+        bundleExec: true
+      })
+      .on('error', gutil.log))
+      .on('error', notify.onError((error) ->
+        return "SCSS Compilation Error: " + error.message;
+      ))
+    .pipe(rename("#{packageFileName}.css"))
     .pipe(gulp.dest("dist"))
-
-  compiled
     .pipe(minifyCSS())
-    .pipe(concat("style.min.css"))
+    .pipe(rename({extname: ".min.css"}))
     .pipe(gulp.dest("dist"))
 
 gulp.task "clean", ->

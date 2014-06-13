@@ -1,6 +1,20 @@
 {
-  "name": "angular-lib-template",
+  "name": "my-pacakge",
   "version": "0.0.1",
+  "author": "Author Name",
+  "main": ["dist/my-package.js", "dist/my-package.css"],
+  "ignore": [
+    "vendor/bower",
+    "node_modules",
+    "spec",
+    "src",
+    "vendor",
+    "gulpfile.js",
+    "gulpfile.coffee",
+    "karma.conf.coffee",
+    "package.json",
+    "screenshot.png"
+  ],
   "dependencies": {
     "angular": "~1.2.16"
   },
