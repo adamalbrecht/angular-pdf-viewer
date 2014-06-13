@@ -38,7 +38,7 @@ app.directive "pdfViewer", ["$window", "$sce", "pdfViewerDefaults", ($window, $s
       pdf = null
       canvas = null
       context = null
-      scope.scale = 1.5
+      scope.zoom = 100
       scope.isLoading = true
 
       # Configure Options
@@ -94,7 +94,7 @@ app.directive "pdfViewer", ["$window", "$sce", "pdfViewerDefaults", ($window, $s
         scope.$watch 'pageNum', (newVal, oldVal) ->
           scope.pageNumRequested = newVal
           renderPage() if (newVal != oldVal)
-        scope.$watch 'scale', (newVal, oldVal) ->
+        scope.$watch 'zoom', (newVal, oldVal) ->
           renderPage() if (newVal != oldVal)
 
       renderPage = ->
@@ -105,7 +105,7 @@ app.directive "pdfViewer", ["$window", "$sce", "pdfViewerDefaults", ($window, $s
           pdf.getPage(scope.pageNum).then(
             (page) ->
               console.log 'got the page'
-              viewport = page.getViewport(scope.scale)
+              viewport = page.getViewport(scope.zoom * .015)
               canvas.height = viewport.height
               canvas.width = viewport.width
               page.render({
@@ -130,8 +130,8 @@ app.directive "pdfViewer", ["$window", "$sce", "pdfViewerDefaults", ($window, $s
 
       # PDF.js VIEW ACTIONS
       # =====================================================
-      scope.zoomIn = -> scope.scale += 0.2 unless scope.scale > 3
-      scope.zoomOut = -> scope.scale -= 0.2 unless scope.scale <= 0.7
+      scope.zoomIn = -> scope.zoom += 10 unless scope.zoom > 200
+      scope.zoomOut = -> scope.zoom -= 10 unless scope.zoom <= 30
       scope.nextPage = -> scope.pageNum += 1 if isValidPageNum(scope.pageNum + 1)
       scope.prevPage = -> scope.pageNum -= 1 if isValidPageNum(scope.pageNum - 1)
       scope.firstPage = -> scope.pageNum = 1
@@ -165,7 +165,7 @@ app.directive "pdfViewer", ["$window", "$sce", "pdfViewerDefaults", ($window, $s
                       </div>
                       <div class='pdf-viewer-toolbar-right'>
                         <div class='pdf-viewer-toolbar-wrapper' ng-hide='useEmbedded'>
-                          <span>Zoom: {{scale * 100.0 | number:0}}% </span>
+                          <span>Zoom: {{zoom}}% </span>
                           <button class='pdf-toolbar-btn' ng-click='zoomOut()' ng-bind-html='translations.zoomOut'></button>
                           <button class='pdf-toolbar-btn' ng-click='zoomIn()' ng-bind-html='translations.zoomIn'></button>
                         </div>
