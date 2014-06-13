@@ -13,6 +13,7 @@ $gray: #ccc;
     border-bottom: solid 1px $gray;
     padding: 5px;
     text-align: center;
+    position: relative;
 
     // Clearfix
     &:after {
@@ -21,12 +22,15 @@ $gray: #ccc;
       clear: both;
     }
 
-    &-left, &-center, &-right {
+    &-wrapper, &-left, &-center, &-right {
       display: inline-block;
     }
     &-center {
       text-align: center;
       width: 200px;
+      position: absolute;
+      top: 10px;
+      left: 50%;
       margin: 0 auto 0 -100px;
       strong {
         padding-top: 5px;
@@ -54,5 +58,8 @@ $gray: #ccc;
     padding-top: 10px;
     border: solid 1px $lightGray;
     overflow: scroll;
+  }
+  &-embedded-object {
+    // width: 100%;
   }
 }
