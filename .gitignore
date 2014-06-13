@@ -1,8 +1,10 @@
 .DS_Store
 /node_modules
 /dist
+/dist/demo.html
+/dist/sample.pdf
+/demo
 /generated
-/dist
 .sass-cache
 /vendor/bower
 *.swp

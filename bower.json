@@ -1,8 +1,11 @@
 {
-  "name": "my-pacakge",
+  "name": "angular-pdf-viewer",
   "version": "0.0.1",
-  "author": "Author Name",
-  "main": ["dist/my-package.js", "dist/my-package.css"],
+  "author": "Adam Albrecht",
+  "main": [
+    "dist/angular-pdf-viewer.js",
+    "dist/angular-pdf-viewer.css"
+  ],
   "ignore": [
     "vendor/bower",
     "node_modules",
@@ -16,7 +19,8 @@
     "screenshot.png"
   ],
   "dependencies": {
-    "angular": "~1.2.16"
+    "angular": "~1.2.16",
+    "pdfjs-bower": "~1.0.233"
   },
   "devDependencies": {
     "jquery": "~1.9.0",

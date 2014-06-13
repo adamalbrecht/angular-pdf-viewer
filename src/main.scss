@@ -1,5 +1,58 @@
-$black: #000;
+$darkGray: #444;
+$lightGray: #eee;
+$gray: #ccc;
 
-h1.test-selector {
-  color: $black;
+.pdf-viewer {
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  border: solid 1px $gray;
+  box-sizing: border-box;
+  &-toolbar {
+    background: $lightGray;
+    display: block;
+    border-bottom: solid 1px $gray;
+    padding: 5px;
+    text-align: center;
+
+    // Clearfix
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    &-left, &-center, &-right {
+      display: inline-block;
+    }
+    &-center {
+      text-align: center;
+      width: 200px;
+      margin: 0 auto 0 -100px;
+      strong {
+        padding-top: 5px;
+      }
+    }
+    &-left {
+      float: left;
+      text-align: left;
+    }
+    &-right {
+      float: right;
+      text-align: right;
+    }
+
+    &-page {
+      display: inline-block;
+      input {
+        width: 30px;
+      }
+    }
+  }
+  &-container {
+    background-color: $darkGray;
+    text-align: center;
+    padding-top: 10px;
+    border: solid 1px $lightGray;
+    overflow: scroll;
+  }
 }
