@@ -1,12 +1,13 @@
-# Angular Lib Template
+# angular-pdf-viewer
 
-This is a very basic starter template for creating an angular library, such as a directive or service. It uses [Gulp](http://gulpjs.com) for asset compilation (Coffeescript and Less) and [Jasmine](http://jasmine.github.io/) and [Karama](http://karma-runner.github.io/) for testing.
+This is an [Angular.js]() directive for viewing PDF documents using Mozilla's [PDF.js]() library. For browsers that are not supported by PDF.js, it uses the OS' native PDF plugin. It also includes very basic pagination and zooming.
 
-To use the template as your starting point, just do the following:
+# Development
 
-1. Clone the repo
-2. `npm install`
-3. `bower install`
-4. `gulp` to watch and auto-compile files
-5. `karma start` to watch and auto-run tests
-6. Delete the sample directive and spec and replace with your own code.
+1. Install dependencies: [NPM](http://npmjs.org), [Ruby](https://www.ruby-lang.org/en/), [Bundler](http://bundler.io/)
+2. Clone the repository
+3. Run `bundle install`. This will install the version of [SASS](http://sass-lang.com/) specified in the Gemfile.
+4. Run `npm install`
+5. Run `bower install`
+6. Run `gulp` in one shell. This will watch your files, auto-compile them, and start a local server.
+7. Open your browser to [http://localhost:8282](http://localhost:8282) to view the demo
