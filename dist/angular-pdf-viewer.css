@@ -1,0 +1,75 @@
+/* line 7, main.scss */
+.pdf-viewer {
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  border: solid 1px #cccccc;
+  box-sizing: border-box; }
+  /* line 12, main.scss */
+  .pdf-viewer-toolbar {
+    background: #eeeeee;
+    display: block;
+    border-bottom: solid 1px #cccccc;
+    padding: 5px;
+    text-align: center;
+    position: relative; }
+    /* line 21, main.scss */
+    .pdf-viewer-toolbar:after {
+      content: "";
+      display: table;
+      clear: both; }
+    /* line 27, main.scss */
+    .pdf-viewer-toolbar-wrapper, .pdf-viewer-toolbar-left, .pdf-viewer-toolbar-center, .pdf-viewer-toolbar-right {
+      display: inline-block; }
+    /* line 30, main.scss */
+    .pdf-viewer-toolbar-center {
+      text-align: center;
+      width: 200px;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      margin: 0 auto 0 -100px; }
+      /* line 37, main.scss */
+      .pdf-viewer-toolbar-center strong {
+        padding-top: 5px; }
+    /* line 41, main.scss */
+    .pdf-viewer-toolbar-left {
+      float: left;
+      text-align: left; }
+    /* line 45, main.scss */
+    .pdf-viewer-toolbar-right {
+      float: right;
+      text-align: right; }
+    /* line 50, main.scss */
+    .pdf-viewer-toolbar-page {
+      display: inline-block; }
+      /* line 52, main.scss */
+      .pdf-viewer-toolbar-page input {
+        width: 30px; }
+  /* line 57, main.scss */
+  .pdf-viewer-container {
+    background-color: #444444;
+    text-align: center;
+    padding-top: 10px;
+    border: solid 1px #eeeeee;
+    overflow: scroll; }
+  /* line 67, main.scss */
+  .pdf-viewer a.pdf-viewer-toolbar-btn {
+    color: inherit;
+    background-color: #fff;
+    min-width: 15px;
+    border: solid 1px #929292;
+    display: inline-block;
+    outline: 0;
+    margin: 0 4px 0 0;
+    padding: 1px 5px;
+    text-decoration: none;
+    cursor: default;
+    position: relative;
+    text-align: center;
+    border-radius: 5px;
+    background-image: -webkit-linear-gradient(top, #f2f2f2, white);
+    background-image: linear-gradient(to top, #f2f2f2, white); }
+    /* line 83, main.scss */
+    .pdf-viewer a.pdf-viewer-toolbar-btn:hover {
+      background-image: -webkit-linear-gradient(top, #e5e5e5, darkent(white, 5%));
+      background-image: linear-gradient(to top, #e5e5e5, #f2f2f2); }
