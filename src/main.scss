@@ -1,6 +1,8 @@
 $darkGray: #444;
 $lightGray: #eee;
 $gray: #ccc;
+$buttonDark: #f2f2f2;
+$buttonLight: #fff;
 
 .pdf-viewer {
   font-family: arial, sans-serif;
@@ -61,5 +63,26 @@ $gray: #ccc;
   }
   &-embedded-object {
     // width: 100%;
+  }
+  a.pdf-viewer-toolbar-btn {
+    color: inherit;
+    background-color: #fff;
+    min-width: 15px;
+    border: solid 1px #929292;
+    display: inline-block;
+    outline: 0; 
+    margin: 0 4px 0 0;
+    padding: 1px 5px;
+    text-decoration: none;
+    cursor: default; 
+    position: relative;
+    text-align: center; 
+    border-radius: 5px;
+    background-image: -webkit-linear-gradient(top, $buttonDark, $buttonLight);
+    background-image: linear-gradient(to top, $buttonDark, $buttonLight);
+    &:hover {
+      background-image: -webkit-linear-gradient(top, darken($buttonDark, 5%), darkent($buttonLight, 5%));
+      background-image: linear-gradient(to top, darken($buttonDark, 5%), darken($buttonLight, 5%));
+    }
   }
 }

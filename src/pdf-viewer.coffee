@@ -152,8 +152,8 @@ app.directive "pdfViewer", ["$window", "$sce", "pdfViewerDefaults", ($window, $s
                   <div ng-show='!isLoading'>
                     <div class='pdf-viewer-toolbar'>
                       <div class='pdf-viewer-toolbar-left' ng-hide='useEmbedded'>
-                        <button class='pdf-toolbar-btn' ng-click='prevPage()' ng-bind-html='translations.previousPage' ng-disabled='pageNum <= 1'></button>
-                        <button class='pdf-toolbar-btn' ng-click='nextPage()' ng-bind-html='translations.nextPage' ng-disabled='pageNum >= pageCount'></button>
+                        <a href='' class='pdf-viewer-toolbar-btn' ng-click='prevPage()' ng-bind-html='translations.previousPage' ng-disabled='pageNum <= 1'></a>
+                        <a href='' class='pdf-viewer-toolbar-btn' ng-click='nextPage()' ng-bind-html='translations.nextPage' ng-disabled='pageNum >= pageCount'></a>
                         <form class='pdf-viewer-toolbar-page' ng-submit='goToPage(pageNumRequested)'>
                           <span>Page:</span>
                           <input type='text' ng-model='pageNumRequested' ng-blur='goToPage(pageNumRequested)'>
@@ -166,10 +166,10 @@ app.directive "pdfViewer", ["$window", "$sce", "pdfViewerDefaults", ($window, $s
                       <div class='pdf-viewer-toolbar-right'>
                         <div class='pdf-viewer-toolbar-wrapper' ng-hide='useEmbedded'>
                           <span>Zoom: {{zoom}}% </span>
-                          <button class='pdf-toolbar-btn' ng-click='zoomOut()' ng-bind-html='translations.zoomOut'></button>
-                          <button class='pdf-toolbar-btn' ng-click='zoomIn()' ng-bind-html='translations.zoomIn'></button>
+                          <a href='' class='pdf-viewer-toolbar-btn' ng-click='zoomOut()' ng-bind-html='translations.zoomOut'></a>
+                          <a href='' class='pdf-viewer-toolbar-btn' ng-click='zoomIn()' ng-bind-html='translations.zoomIn'></a>
                         </div>
-                        <button class='pdf-tooblar-btn' ng-click='download()' ng-bind-html='translations.download'></button>
+                        <a class='pdf-viewer-toolbar-btn' download='{{src}}' href='{{src}}' target="_blank" ng-bind-html='translations.download'></a>
                       </div>
                     </div>
                     <div class='pdf-viewer-container'>
