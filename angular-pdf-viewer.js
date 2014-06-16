@@ -33,17 +33,59 @@ app.provider('pdfViewerDefaults', function () {
     }
   };
 });
+app.factory('pdfJsBrowserSupport', function () {
+  var getBrowser;
+  getBrowser = function () {
+    var M, agent, tem;
+    tem = null;
+    agent = navigator.userAgent;
+    M = agent.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if (/trident/i.test(M[1])) {
+      tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+      return 'IE ' + (tem[1] || '');
+    }
+    if (M[1] === 'Chrome') {
+      tem = agent.match(/\bOPR\/(\d+)/);
+      if (tem !== null) {
+        return 'Opera ' + tem[1];
+      }
+    }
+    M = M[2] ? [
+      M[1],
+      M[2]
+    ] : [
+      navigator.appName,
+      navigator.appVersion,
+      '-?'
+    ];
+    if ((tem = agent.match(/version\/(\d+)/i)) !== null) {
+      M.splice(1, 1, tem[1]);
+    }
+    return M.join(' ');
+  };
+  return {
+    get: getBrowser,
+    isSupported: function (_this) {
+      return function () {
+        var browser;
+        browser = getBrowser();
+        return browser.indexOf('msie') === -1;
+      };
+    }(this)
+  };
+});
 app.directive('pdfViewer', [
   '$window',
   '$sce',
   'pdfViewerDefaults',
-  function ($window, $sce, pdfViewerDefaults) {
+  'pdfJsBrowserSupport',
+  function ($window, $sce, pdfViewerDefaults, pdfJsBrowserSupport) {
     return {
       restrict: 'A',
       scope: { src: '@' },
       replace: true,
       link: function (scope, element, attrs) {
-        var browserSupportsPdfJS, canvas, context, init, isValidPageNum, key, pdf, renderPage, setupEmbeddedObject, setupPdfJs, value, _ref;
+        var canvas, context, init, isValidPageNum, key, pdf, renderPage, setupEmbeddedObject, setupPdfJs, value, _ref;
         pdf = null;
         canvas = null;
         context = null;
@@ -62,7 +104,7 @@ app.directive('pdfViewer', [
         init = function () {
           console.log('init');
           scope.title = scope.src;
-          scope.useEmbedded = browserSupportsPdfJS() === false;
+          scope.useEmbedded = pdfJsBrowserSupport.isSupported() === false;
           console.log('use embedded?', scope.useEmbedded);
           if (scope.useEmbedded) {
             return setupEmbeddedObject();
@@ -128,9 +170,6 @@ app.directive('pdfViewer', [
               return console.error(err);
             });
           }
-        };
-        browserSupportsPdfJS = function () {
-          return true;
         };
         isValidPageNum = function (num) {
           return angular.isNumber(num) && num > 0 && num <= scope.pageCount;
