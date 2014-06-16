@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html data-ng-app='DemoApp'>
+  <head>
+    <title>Demo</title>
+    <link rel="stylesheet" type="text/css" href="angular-pdf-viewer.css" media="all" />
+  </head>
+  <body>
+    <div id='container' data-ng-controller='DemoCtrl'>
+      <div style="width: 1024px; margin: 10px auto;">
+        <div pdf-viewer src="sample.pdf"></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="pdf.js"></script>
+    <script type="text/javascript" src="pdf.worker.js"></script>
+    <script type="text/javascript" src="angular.js"></script>
+    <script type="text/javascript" src="angular-pdf-viewer.js"></script>
+    <script type='text/javascript'>
+      var app = angular.module("DemoApp", ['angular-pdf-viewer']);
+      app.controller("DemoCtrl", function($scope) {
+        $scope.myLabel = "Hello, World";
+      });
+    </script>
+  </body>
+</html>
