@@ -2,6 +2,20 @@
 
 This is an [Angular.js](http://angularjs.org) directive for viewing PDF documents using Mozilla's [PDF.js](http://mozilla.github.io/pdf.js/) library. For browsers that are not supported by PDF.js, it uses the OS' native PDF plugin. It also includes very basic pagination and zooming.
 
+# Usage
+
+```javascript
+var app = angular.module("MyApp", ['angular-pdf-viewer']);
+```
+
+```html
+<div pdf-viewer src="sample.pdf"></div>
+```
+
+# Demo
+
+You can see a basic demo [here](http://adamalbrecht.github.io/angular-pdf-viewer/).
+
 # Development
 
 1. Install dependencies: [NPM](http://npmjs.org), [Ruby](https://www.ruby-lang.org/en/), [Bundler](http://bundler.io/)

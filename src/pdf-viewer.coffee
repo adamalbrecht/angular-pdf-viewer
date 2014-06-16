@@ -25,8 +25,32 @@ app.provider "pdfViewerDefaults", ->
       else
         @options[keyOrHash] = value
   }
+
+app.factory "pdfJsBrowserSupport", ->
+  getBrowser = ->
+    tem = null
+    agent = navigator.userAgent
+    M = agent.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []
+    if(/trident/i.test(M[1]))
+      tem = /\brv[ :]+(\d+)/g.exec(ua) || []
+      return 'IE '+(tem[1] || '')
+    if(M[1] == 'Chrome')
+      tem= agent.match(/\bOPR\/(\d+)/)
+      if(tem!= null)
+        return 'Opera '+tem[1]
+    M = if M[2] then [M[1], M[2]] else [navigator.appName, navigator.appVersion, '-?']
+    if (( tem= agent.match(/version\/(\d+)/i)) != null )
+      M.splice(1, 1, tem[1])
+    M.join(' ')
+
+  {
+    get: getBrowser
+    isSupported: =>
+      browser = getBrowser()
+      (browser.indexOf("msie") == -1)
+  }
   
-app.directive "pdfViewer", ["$window", "$sce", "pdfViewerDefaults", ($window, $sce, pdfViewerDefaults) ->
+app.directive "pdfViewer", ["$window", "$sce", "pdfViewerDefaults", "pdfJsBrowserSupport", ($window, $sce, pdfViewerDefaults, pdfJsBrowserSupport) ->
   {
     restrict: 'A'
     scope: {
@@ -54,7 +78,7 @@ app.directive "pdfViewer", ["$window", "$sce", "pdfViewerDefaults", ($window, $s
       init = ->
         console.log 'init'
         scope.title = scope.src
-        scope.useEmbedded = (browserSupportsPdfJS() == false)
+        scope.useEmbedded = (pdfJsBrowserSupport.isSupported() == false)
         console.log "use embedded?", scope.useEmbedded
         if scope.useEmbedded
           setupEmbeddedObject()
@@ -116,8 +140,6 @@ app.directive "pdfViewer", ["$window", "$sce", "pdfViewerDefaults", ($window, $s
           )
         return
 
-      browserSupportsPdfJS = ->
-        true
 
       isValidPageNum = (num) -> angular.isNumber(num) && num > 0 && num <= scope.pageCount
 
