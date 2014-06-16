@@ -1,6 +1,6 @@
 # angular-pdf-viewer
 
-This is an [Angular.js]() directive for viewing PDF documents using Mozilla's [PDF.js]() library. For browsers that are not supported by PDF.js, it uses the OS' native PDF plugin. It also includes very basic pagination and zooming.
+This is an [Angular.js](http://angularjs.org) directive for viewing PDF documents using Mozilla's [PDF.js](http://mozilla.github.io/pdf.js/) library. For browsers that are not supported by PDF.js, it uses the OS' native PDF plugin. It also includes very basic pagination and zooming.
 
 # Development
 
