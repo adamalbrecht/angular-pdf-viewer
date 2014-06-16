@@ -67,7 +67,7 @@ gulp.task 'demo', ->
 gulp.task 'server', ->
   connect.server({
     root: ['demo'],
-    port: 7272
+    port: 8282
   })
 
 gulp.task "clean", ->
